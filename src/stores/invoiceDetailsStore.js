@@ -4,7 +4,9 @@ export const useInvoiceStore = defineStore({
     id: "counter",
     state: () => ({
         invoice: {},
-        invoiceList: []
+        invoiceList: [],
+        lastSearchTerm: "",
+        lastGroupByTerm: ""
     }),
     actions: {
         setInvoice(newInvoice) {

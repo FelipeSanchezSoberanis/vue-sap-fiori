@@ -138,12 +138,11 @@ const router = useRouter();
 const invoiceStore = useInvoiceStore();
 
 const searchInInvoices = _.debounce((newSearchTerm) => {
+  invoiceStore.lastSearchTerm = newSearchTerm;
   searchTerm.value = newSearchTerm;
 }, 500);
 
 const shownInvoices = computed(() => {
-  console.info("Computing");
-
   let finalInvoices = invoices.data;
 
   if (searchTerm.value.length)
@@ -180,12 +179,15 @@ function groupInvoices() {
 
   if (groupTerm) {
     groupByTerm.value = groupTerm.value;
+    invoiceStore.lastGroupByTerm = groupTerm.value;
   } else {
     groupByTerm.value = "";
+    invoiceStore.lastGroupByTerm = "";
   }
 }
 
 function clearSearch() {
+  invoiceStore.lastSearchTerm = "";
   searchTerm.value = "";
 }
 
@@ -212,6 +214,12 @@ function seeInvoiceDetails(invoice) {
 
 onMounted(() => {
   getInvoices();
+
+  if (invoiceStore.lastSearchTerm.length)
+    searchTerm.value = invoiceStore.lastSearchTerm;
+
+  if (invoiceStore.lastGroupByTerm.length)
+    groupByTerm.value = invoiceStore.lastGroupByTerm;
 });
 </script>
 
