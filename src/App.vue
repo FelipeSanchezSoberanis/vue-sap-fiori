@@ -9,7 +9,7 @@ import "bootstrap/dist/css/bootstrap-utilities.css";
 
 export default {
   setup() {
-    setTheme("sap_belize");
+    setTheme("sap_fiori_3_dark");
 
     return { RouterView };
   }

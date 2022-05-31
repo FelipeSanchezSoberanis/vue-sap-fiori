@@ -5,7 +5,7 @@
     style="width: 100%"
     v-if="loadingInvoices"></ui5-busy-indicator>
 
-  <div v-else class="row g-0 gy-3 justify-content-end">
+  <div v-else class="row g-0 gy-3 justify-content-end mb-3">
     <ui5-select
       class="select col-12 col-sm-auto me-sm-3"
       @change="groupInvoices"
